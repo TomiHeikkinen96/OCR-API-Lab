@@ -14,29 +14,11 @@ The project is currently being planned and documented before implementation begi
 
 ```mermaid
 flowchart TB
-    subgraph intake["Input, Detection, and Geometry"]
-        direction LR
-        A["Image upload"] --> B["Decode and validate"]
-        B --> C["Quality checks"]
-        C --> D["Whole-image preprocessing"]
-        D --> E["Text detection"]
-        E --> F["Polygon and box normalization"]
-    end
-
-    F --> G["Crop and rectify regions"]
-
-    subgraph recognition["Crops, Recognition, and Output"]
-        direction LR
-        G --> H["Per-crop preprocessing profiles"]
-        H --> I["Text recognition"]
-        I --> J["Confidence scoring"]
-        J --> K["Reading-order reconstruction"]
-        K --> L["Overlay rendering"]
-        L --> M["JSON plus processed image"]
-    end
-
-    H --> N["Debug crops"]
-    J --> O["Evaluation metrics"]
+    A["Get image"] --> B["Send to local OCR API"]
+    B --> C["Find, crop, and improve text regions"]
+    C --> D["Recognize text and score confidence"]
+    D --> E["Return structured results"]
+    E --> F["Show processed image with overlays"]
 ```
 
 **What This Project Will Demonstrate**
